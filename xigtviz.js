@@ -179,6 +179,8 @@ function getItemContent(igt, itemId) {
     // last resort, get the displayed text (is this a good idea?)
     else
         content = item.text();
+        // if still nothing, go with default
+        if (!content) content = settings.default_content || "";
     itemData._cache.text = content;  // needs to be invalidated if it changes
     return content;
 }

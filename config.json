@@ -19,5 +19,6 @@
         "+": "",
         ",": " "
     },
-    "show_legend": true
+    "show_legend": true,
+    "default_content": "▨"
 }
