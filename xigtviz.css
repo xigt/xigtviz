@@ -98,12 +98,16 @@ div.item:hover {
     color: #FFF;
 }
 
-div.item span.alignment {
-    background-color: #FFEF88;
+
+div.xigtviz-legend {
+    display: inline-block;
+    border: 2px solid #CCC;
+    padding: 2px;
+    margin: 2px;
+    font-weight: bold;
 }
-div.item span.content {
-    background-color: #FF9C99;
-}
-div.item span.segmentation {
-    background-color: #97FF9B;
+div.xigtviz-legend div {
+    display: inline-block;
+    border: 2px solid #CCC;
+    margin: 2px;
 }

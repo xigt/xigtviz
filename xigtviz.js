@@ -92,6 +92,7 @@ function resolveAlignmentExpression(igt, alex) {
 
 function highlightReferents(igt, d, direct) {
     (settings.reference_attributes || []).forEach(function(refAttr) {
+        refAttr = refAttr.name;
         if (getattr(d, refAttr) == null) return;
         aeSpans = alignmentExpressionSpans(getattr(d, refAttr));
         if (aeSpans == null) return;
@@ -132,7 +133,7 @@ function applySpans(igt, itemId, spans, spanclass, direct) {
                 var s = "";
                 if (c > 0 && !spanOn) {
                     spanOn = true;
-                    s = "<span class=\"" + spanclass + "\">";
+                    s = "<span class=\"refattr-" + spanclass + "\">";
                 } else if (c == 0 && spanOn) {
                     spanOn = false;
                     s = "</span>";
@@ -504,4 +505,14 @@ function igtLayout(elemId, igtData) {
         .each(function(d) { d._cache = {}; })  // cache is used for highlighting
         .on("mouseover", function(d) { highlightReferents(elemId, d, true); })
         .on("mouseout", function(d) { dehighlightReferents(elemId); });
+    if (settings.show_legend) {
+        var legend = igt.append("div")
+            .classed("xigtviz-legend", true)
+            .text("Key:");
+        legend.selectAll("div")
+            .data(settings.reference_attributes || [])
+          .enter().append("div")
+            .attr("class", function(d) { return "refattr-" + d.name; })
+            .text(function(d) { return d.name});
+    }
 }
